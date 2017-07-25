@@ -1,0 +1,8 @@
+exportPattern("^[^\\.]")
+import(grid)
+import(lattice)
+import(deSolve)
+import(utils)
+import(optimbase)
+import(optimsimplex)
+import(neldermead)

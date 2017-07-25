@@ -1,0 +1,71 @@
+2014/02/08 Sebastien Bihorel <sb.pmlab@gmail.com>
+  * Change vignette data location to comply to R 3.0 requirements
+  
+  * Add NAMESPACE
+  
+  * Minor modification to accommodate upgrade in neldermead packages
+  
+  * Added protection of parameter variables so they cannot be modified in 
+    $DERIVED
+  
+  * Deprecated functions: zzz.R
+
+2011/12/10 Sebastien Bihorel <sb.pmlab@gmail.com>
+  * Switch from dde function (PBSddesolve package) to dede function (deSolve
+  package) to integrate of delayed differential equations. Dependency to 
+  
+  * Change in input arguments to scarabee.new due to the switch in the dede
+  solver.
+  
+  * Bug fixes in making.dosing.R, ode.model.R, and dde.model.R to correct 
+  problem with dosing history.
+  
+  * Deprecated functions: dde.map, dde.switch, and get.switch.vector.
+
+2011/04/12 Sebastien Bihorel <sb.pmlab@gmail.com>
+  * Windows-specific bugs in demos have been corrected
+  
+  * Vignette updated to document the demos.
+  
+2011/03/31 Sebastien Bihorel <sb.pmlab@gmail.com>
+  * scaRabee gets a major overhaul with version 1.1. Changes affect almost every
+  provided functionalities. 
+    * scaRabee now reads (only) datasets specified using NONMEM or S-ADPAT 
+    standards. Dosing and covariates files are no longer required and multiple 
+    functions have been modified accordingly.
+    * scaRabee model is now specified in a single txt file, which uses a 
+    tag-based syntax, very much like the one used in NM-TRAN control streams, 
+    S-ADAPT-TRAN models, or MONOLIX models. Residual variability and secondary
+    parameters are also specified in the same file.
+    * scaRabee now can perform population analysis using the standard two stage 
+    method.
+    * scaRabee now can perform direct grid search.
+  
+  * There is no backward compatibility with versions 1.0.
+  
+  * Almost all existing functions were modified as a result of these changes. 
+  New functions are distributed with version 1.1.
+  
+  * init.report was given a new name initialize.report
+  
+  * Deprecated functions: find.id.R and weigthing.additive
+
+2010/07/30 Sebastien Bihorel <sb.pmlab@gmail.com>
+  * scarabee.analysis: corrected data file reading issues when observations are
+  provided for more than one system states.
+
+  * estimation.plot and simulation.plot: move the par(ask=TRUE) call
+
+  * find.id: modify code to allow user to specify its own 
+  
+2010/05/25 Sebastien Bihorel <sb.pmlab@gmail.com>
+
+  * DESCRIPTION: added missing dependencies to deSolve and PBSddesolve packages
+  
+  * scarabee.directory: corrected permission problems in Windows environment
+  in all file.copy calls.
+  
+2010/05/11 Sebastien Bihorel <sb.pmlab@gmail.com>
+
+  * scaRabee.Rnw: corrected \bibliography{scaRabee.bib} to
+    \bibliography{scaRabee} to address compilation issue in Windows.

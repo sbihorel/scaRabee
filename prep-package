@@ -1,0 +1,117 @@
+#!/bin/bash
+#
+# prep.package <name> -v=<number> [-p]
+#
+# 1- <name> must be a directory (with valid content???),
+# 2- copy <name> to ./<prep-name> if this new folder does not already exist; if it does, abort
+# 3- in all R and Rd files:
+# * replace "$version$" by "<number>"
+# * replace "\$version\$" by "<number>"
+# * replace "$date$" by today's date formatted as follows: YYYY-MM-DD
+# * replace "$year$" by today's year formatted as follows: YYYY
+# 4- Repeat step 3 for ./<prep-name>/DESCRIPTION
+#
+CP=`which cp`
+SED=`which sed`
+
+help_msg(){
+printf "
+Syntax: $0 [-h]  -v version_number  [-p]
+   -h     - this message
+   -v     - the version number
+     you must be in the top level of the source directory
+"
+}
+
+VERSION=""
+
+#while getopts ":a" opt; do
+#  case $opt in
+
+while getopts ":ht:v:" opts; do
+  case $opts in
+     h) help_msg; exit 0
+     ;;
+     v) VERSION=$OPTARG; #shift
+     ;;
+     ?) help_msg; exit 0;
+     ;;
+  esac
+done
+shift $((OPTIND-1))
+
+pushd .. >/dev/null
+t=$PWD/
+popd >/dev/null
+TARGDIR=../prep-${PWD##$t}
+
+if [ -d $TARGDIR ] ; then
+   printf "The $TARGDIR directory already exists\nCowardly refusing to overwrite it\n";
+   exit 1;
+fi
+
+DATE=`date +%Y-%m-%d`
+YEAR=`date +%Y`
+
+if [ "X$VERSION" == 'X' ] ; then
+   echo "Version information not specified"
+   help_msg;
+   exit 1;
+fi
+
+if [ ! -d ./man ] ; then
+   echo "Directory ./man does not exist"
+   exit 1;
+fi
+
+echo 'version   ' $VERSION
+echo 'date      ' $DATE
+
+loop=1
+while [ $loop != 0 ];
+do
+   printf "Continue with these options (y/n)? "
+   response="n"
+   read -t 10 response
+
+   case "$response" in
+       y|Y|yes|YES)
+       loop=0
+       ;;
+       n|N|no|NO)
+          loop=0; exit 0
+       ;;
+       "") loop=0; exit 0
+       ;;
+       *) printf "Invalid response\n"
+       echo $response
+       ;;
+   esac
+done
+
+$CP -R . $TARGDIR
+
+cd $TARGDIR
+find . -name .project -exec rm -rf {} \;
+find . -name .svn -exec rm -rf {} \;
+rm -f $0 
+
+cd man
+
+for f in `ls *.Rd ../R/*.R ../vignettes/*.Rnw ../DESCRIPTION ../NAMESPACE` ; do
+   echo "processing $f"
+   $SED \
+       -e "s/@version@\?/$VERSION/g" \
+       -e "s/\$version\$\?/$VERSION/g" \
+       -e "s/\$date\$\?/$DATE/g" \
+       -e "s/\$year\$\?/$YEAR/g" \
+       < $f > $$
+   mv $$ $f
+done
+
+cd ../vignettes
+./Rd2latex.sh
+
+sweave -ld *.Rnw
+
+cd ..
