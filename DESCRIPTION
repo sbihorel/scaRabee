@@ -14,3 +14,5 @@ Description: scaRabee is a port of the Scarabee toolkit originally
 Depends: neldermead (>= 1.0-8), optimsimplex (>= 1.0-5), optimbase (>= 1.0-8), lattice, grid, deSolve, utils
 License: GPL-3
 LazyLoad: yes
+URL: https://github.com/sbihorel/scaRabee
+Bugreport: https://github.com/sbihorel/scaRabee/BUGREPORTS
