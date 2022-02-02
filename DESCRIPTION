@@ -11,7 +11,7 @@ Description: scaRabee is a port of the Scarabee toolkit originally written as a
   of pharmacokinetic-pharmacodynamic models at the individual and population level.
   It is built on top of the neldermead package, which provides the direct search 
   algorithm proposed by Nelder and Mead for model optimization.
-License: file LICENSE
+License: GPL-3
 Encoding: UTF-8
 VignetteBuilder: knitr
 LazyLoad: yes

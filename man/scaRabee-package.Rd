@@ -51,7 +51,7 @@ Please, refer to the vignette to learn how to run analyses with \pkg{scaRabee}
 and read more about the methods used in \pkg{scaRabee}.
 
 \pkg{scaRabee} is  available on the Comprehensive R Archive Network and also at:
-\url{http://code.google.com/p/pmlab/}
+\url{https://github.com/sbihorel/scaRabee}
 
 }
 

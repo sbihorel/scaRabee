@@ -68,7 +68,7 @@ provided as derived variables.
 ## How to obtain scaRabee
 
 `scaRabee` is available at the Comprehensive R Archive Network and also on 
-[gihtub](https://github.com/sbihorel/scaRabee.git). `scaRabee` is distributed under a GNU
+[gihtub](https://github.com/sbihorel/scaRabee). `scaRabee` is distributed under a GNU
 General Public License version 3. Please, review the terms of this license
 before using this package. 
 
@@ -100,7 +100,7 @@ for parameter optimization in `scaRabee`, are R ports of the Scilab modules
 of the same names which were developed by Michael Baudin at INRIA (Institut
 National de Recherche en Informatique et en Automatique) and now at the 
 Digiteo consortium. More information on Scilab can be found at 
-[www.scilab.org](www.scilab.org).
+[www.scilab.org](https://www.scilab.org).
 
 ## Reporting bugs
 
